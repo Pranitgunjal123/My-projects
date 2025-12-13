@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Amazon — realistic clone (UI only)</title>
+
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ---------- Reset & base ---------- */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;color:#0f172a;background:#f3fff7}
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+
+    /* ---------- Container ---------- */
+    .wrap{max-width:1400px;margin:16px auto;padding:0 18px;}
+
+    /* ---------- Top header (dark) ---------- */
+    .top-header{
+      background:#0f172a;color:#fff;border-radius:10px;padding:12px 16px;
+      display:flex;align-items:center;gap:14px;box-shadow:0 10px 30px rgba(2,6,23,0.15);
+    }
+    .brand {
+      display:flex;align-items:center;gap:10px;padding:6px 10px;border-radius:8px;background:#111827;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+    }
+    .brand .logo {
+      width:36px;height:36px;border-radius:6px;background:#ff9900;color:#111;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;
+    }
+    .brand .name { color:#fff;font-weight:700;font-size:18px;opacity:.95; }
+    .searchbar{flex:1;display:flex;gap:10px;align-items:center}
+    .searchbar select{height:40px;border-radius:6px;padding:6px 10px;border:0;min-width:120px;background:#fff}
+    .searchbar input{height:40px;border-radius:6px;padding:8px 12px;border:0;flex:1}
+    .searchbar button{height:40px;padding:8px 14px;border-radius:6px;border:0;background:#ff9900;color:#111;font-weight:800;cursor:pointer}
+    .header-right{display:flex;gap:14px;align-items:center;font-size:13px;color:#e6eefc}
+    .header-right .muted{opacity:.85}
+
+    /* ---------- Category pills ---------- */
+    .cat-row{display:flex;gap:10px;overflow:auto;margin:14px 0;padding:8px 4px}
+    .pill{background:#fff;padding:8px 14px;border-radius:22px;box-shadow:0 6px 18px rgba(2,6,23,0.06);font-weight:600;white-space:nowrap}
+
+    /* ---------- three-column layout ---------- */
+    .layout{
+      display:grid;
+      grid-template-columns: 240px 1fr 320px;
+      gap:18px;
+      align-items:start;
+    }
+
+    /* left column */
+    .left {
+      background:#fff;border-radius:12px;padding:16px;box-shadow:0 10px 30px rgba(2,6,23,0.06);
+    }
+    .left h3{font-size:18px;margin-bottom:12px}
+    .left-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .left-card{background:#f8fafc;border-radius:10px;padding:8px;text-align:center}
+    .left-card img{height:80px;width:100%;object-fit:cover;border-radius:6px}
+    .left-card .t{margin-top:8px;font-size:13px;color:#0f172a}
+
+    /* center column */
+    .center{display:flex;flex-direction:column;gap:14px}
+    .hero{
+      display:grid;grid-template-columns:1fr 340px 260px;gap:12px;
+    }
+    .hero .hero-big{
+      background:#ecfff0;border-radius:12px;padding:18px;display:flex;gap:16px;align-items:center;box-shadow:0 12px 36px rgba(2,6,23,0.06);
+    }
+    .hero .hero-big .text{flex:1}
+    .hero .hero-big h1{font-size:30px;margin-bottom:6px}
+    .hero .hero-big p{color:#374151;margin-bottom:10px}
+    .hero .hero-big .cta{display:flex;gap:10px}
+    .hero .hero-big .btn-cta{background:#ff9900;border-radius:10px;padding:10px 14px;border:0;font-weight:800;cursor:pointer}
+    .hero .side-card{background:#fff;border-radius:12px;padding:12px;box-shadow:0 10px 28px rgba(2,6,23,0.06);min-height:160px}
+
+    /* product feed */
+    .feed-title{display:flex;justify-content:space-between;align-items:center;margin-top:6px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:6px}
+    .product{
+      background:#fff;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px;box-shadow:0 10px 30px rgba(2,6,23,0.05)
+    }
+    .product img{height:170px;object-fit:cover;border-radius:8px}
+    .product .p-title{font-weight:700;font-size:14px;min-height:40px}
+    .product .cat{color:#6b7280;font-size:13px}
+    .product .price{font-weight:900;font-size:16px}
+    .product .actions{margin-top:auto;display:flex;gap:8px}
+    .btn-outline{background:#eef2ff;border-radius:8px;padding:8px;border:0;cursor:pointer}
+    .btn-solid{background:#ff9900;border-radius:8px;padding:8px;border:0;font-weight:800;cursor:pointer}
+
+    /* right promo column */
+    .right{display:flex;flex-direction:column;gap:14px}
+    .promo{background:#fff;border-radius:12px;padding:14px;box-shadow:0 10px 30px rgba(2,6,23,0.06);min-height:110px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+    .promo h4{font-weight:800;margin-bottom:6px}
+    .promo p{color:#6b7280;font-size:13px}
+
+    /* footer */
+    .footer{margin-top:20px;text-align:center;color:#6b7280;padding-bottom:30px}
+
+    /* ---------- responsive ---------- */
+    @media (max-width:1180px){
+      .layout{grid-template-columns:1fr}
+      .hero{grid-template-columns:1fr;gap:12px}
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .right{order:3}
+      .left{order:2}
+    }
+    @media (max-width:640px){
+      .grid{grid-template-columns:repeat(1,1fr)}
+      .searchbar select{display:none}
+      .header-right .muted{display:none}
+      .brand .name{display:none}
+      .brand{padding:6px}
+    }
+
+    /* small utilities */
+    .muted{color:#6b7280;font-size:13px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- top header -->
+    <header class="top-header" role="banner">
+      <div class="brand" aria-hidden="false">
+        <div class="logo" aria-hidden="true">a</div>
+        <div class="name">amazon <span style="opacity:.6;font-weight:600;margin-left:6px">clone</span></div>
+      </div>
+
+      <div class="searchbar" role="search" aria-label="Search store">
+        <select aria-label="category">
+          <option value="">All</option>
+          <option>All</option><option>Electronics</option><option>Home</option><option>Apparel</option>
+        </select>
+        <input id="search" placeholder="Search Amazon.in" aria-label="Search input"/>
+        <button id="searchBtn">Search</button>
+      </div>
+
+      <div class="header-right">
+        <div class="muted">Deliver to <strong>Pune 410501</strong></div>
+        <div class="muted">Hello, <strong>MASK</strong></div>
+        <div class="muted">Cart (0)</div>
+      </div>
+    </header>
+
+    <!-- category pills -->
+    <div class="cat-row" role="navigation" aria-label="category pills">
+      <div class="pill">All</div>
+      <div class="pill">Fresh</div>
+      <div class="pill">Bestsellers</div>
+      <div class="pill">Sell</div>
+      <div class="pill">Kindle</div>
+      <div class="pill">Books</div>
+      <div class="pill">AmazonBasics</div>
+      <div class="pill">Home & Kitchen</div>
+      <div class="pill">Today's Deals</div>
+    </div>
+
+    <!-- main layout -->
+    <div class="layout" role="main">
+
+      <!-- left -->
+      <aside class="left" aria-label="left features">
+        <h3>Pick up where you left off</h3>
+        <div class="left-grid">
+          <div class="left-card"><img src="https://picsum.photos/seed/tape/260/180" alt="tape"/><div class="t">Waterproof Tape</div></div>
+          <div class="left-card"><img src="https://picsum.photos/seed/wallet/260/180" alt="wallet"/><div class="t">Wallets</div></div>
+          <div class="left-card"><img src="https://picsum.photos/seed/shoes/260/180" alt="shoes"/><div class="t">Shoes</div></div>
+          <div class="left-card"><img src="https://picsum.photos/seed/tea/260/180" alt="tea"/><div class="t">Tea</div></div>
+        </div>
+      </aside>
+
+      <!-- center -->
+      <section class="center" aria-label="main feed">
+        <div class="hero">
+          <div class="hero-big" role="region" aria-label="hero">
+            <div class="text">
+              <h1>Starting ₹99</h1>
+              <p class="muted">Budget store — Free delivery on first order. Up to 10% instant discount with select cards.</p>
+              <div class="cta">
+                <button class="btn-cta" onclick="scrollToProducts()">Shop now</button>
+                <button class="btn-outline" onclick="alert('Offers (mock)')">See offers</button>
+              </div>
+            </div>
+            <div style="width:420px;display:flex;align-items:center;justify-content:center">
+              <img src="https://picsum.photos/seed/hero/420/240" alt="hero image" style="border-radius:10px;box-shadow:0 8px 24px rgba(2,6,23,0.06)">
+            </div>
+          </div>
+
+          <div class="side-card">
+            <h4 style="margin-bottom:8px">Continue shopping deals</h4>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <img src="https://picsum.photos/seed/deal/110/110" style="width:110px;height:110px;border-radius:8px" alt="deal"/>
+              <div>
+                <strong>Super Strong Adhesive Waterproof Tape</strong>
+                <div class="muted" style="margin-top:6px">Suitable for home renovation, roof leak, window gaps.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="side-card">
+            <h4 style="margin-bottom:8px">Get wholesale prices</h4>
+            <p class="muted">on 15 Cr+ products — Register now</p>
+            <img src="https://picsum.photos/seed/business/260/110" style="margin-top:8px;border-radius:8px" alt="business"/>
+          </div>
+        </div>
+
+        <div class="feed-title">
+          <h3 style="font-size:18px">Recommended for you</h3>
+          <div class="muted">Showing 10 results</div>
+        </div>
+
+        <div class="grid" id="productGrid" aria-live="polite">
+          <!-- JS fills this -->
+        </div>
+      </section>
+
+      <!-- right -->
+      <aside class="right" aria-label="right promos">
+        <div class="promo">
+          <h4>Amazon Business</h4>
+          <p class="muted">Office supplies, bulk orders, and more.</p>
+        </div>
+
+        <div class="promo">
+          <h4>Today's Deals</h4>
+          <p class="muted">Up to 60% off selected categories</p>
+        </div>
+
+        <div class="promo">
+          <h4>Gift Cards</h4>
+          <p class="muted">Instant delivery & special offers</p>
+        </div>
+      </aside>
+    </div>
+
+    <div class="footer">UI-only demo — replace placeholder images and text for production.</div>
+  </div>
+
+  <script>
+    // ---------- sample products ----------
+    const PRODUCTS = [
+      {id:'p1',title:'Wireless Noise-Cancelling Headphones',price:4999,img:'https://picsum.photos/seed/headphones/600/400',cat:'Electronics'},
+      {id:'p2',title:'Classic Leather Wallet',price:899,img:'https://picsum.photos/seed/wallet/600/400',cat:'Accessories'},
+      {id:'p3',title:'Running Shoes - Lightweight',price:2599,img:'https://picsum.photos/seed/shoes/600/400',cat:'Footwear'},
+      {id:'p4',title:'Stainless Steel Water Bottle 1L',price:599,img:'https://picsum.photos/seed/bottle/600/400',cat:'Home'},
+      {id:'p5',title:'Smartwatch with Heart Rate Monitor',price:3499,img:'https://picsum.photos/seed/watch/600/400',cat:'Electronics'},
+      {id:'p6',title:'Cotton Casual Shirt',price:1299,img:'https://picsum.photos/seed/shirt/600/400',cat:'Apparel'},
+      {id:'p7',title:'Portable Bluetooth Speaker',price:1799,img:'https://picsum.photos/seed/speaker/600/400',cat:'Electronics'},
+      {id:'p8',title:'Organic Assam Tea 250g',price:399,img:'https://picsum.photos/seed/tea/600/400',cat:'Groceries'},
+      {id:'p9',title:"Women's Ethnic Kurti",price:1699,img:'https://picsum.photos/seed/kurti/600/400',cat:'Apparel'},
+      {id:'p10',title:'Non-stick Frying Pan 26cm',price:1099,img:'https://picsum.photos/seed/pan/600/400',cat:'Home'}
+    ];
+
+    function numberWithCommas(x){ return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+    function escapeHtml(s){ return String(s).replace(/[&<>"']/g, (m) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m]); }
+
+    function renderProducts(list){
+      const grid = document.getElementById('productGrid');
+      grid.innerHTML = '';
+      list.forEach(p=>{
+        const el = document.createElement('div');
+        el.className = 'product';
+        el.innerHTML = `
+          <img src="${p.img}" alt="${escapeHtml(p.title)}" loading="lazy"/>
+          <div class="p-title">${escapeHtml(p.title)}</div>
+          <div class="cat">${escapeHtml(p.cat)}</div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div class="price">₹${numberWithCommas(p.price)}</div>
+            <div class="muted">In stock</div>
+          </div>
+          <div class="actions">
+            <button class="btn-outline" onclick="alert('Buy now (mock)')">Buy Now</button>
+            <button class="btn-solid" onclick="addToCart('${p.id}')">Add to cart</button>
+          </div>
+        `;
+        grid.appendChild(el);
+      });
+    }
+
+    function addToCart(id){
+      alert('Added to cart: ' + id + ' (mock)');
+    }
+
+    function scrollToProducts(){ document.getElementById('productGrid').scrollIntoView({behavior:'smooth'}); }
+
+    // search
+    document.getElementById('searchBtn').addEventListener('click', applySearch);
+    document.getElementById('search').addEventListener('keydown', (e)=>{ if(e.key==='Enter') applySearch(); });
+
+    function applySearch(){
+      const q = document.getElementById('search').value.trim().toLowerCase();
+      const filtered = PRODUCTS.filter(p=>p.title.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q));
+      renderProducts(filtered.length?filtered:PRODUCTS);
+    }
+
+    renderProducts(PRODUCTS);
+  </script>
+</body>
+</html>
