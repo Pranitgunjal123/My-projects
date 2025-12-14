@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pranit Gunjal | Developer Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">My Portfolio</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links" id="navLinks">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#resume">Resume</a>
+                <a href="#skills">Skills</a>
+                <a href="#services">Services</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <p class="hero-subtitle">Hello, I'm</p>
+                <h1 class="hero-title" id="typed-text">Pranit Gunjal</h1>
+                <p class="hero-description">Designing and building modern web experiences with precision, performance, and purpose.</p>
+                <div class="hero-btns">
+                    <a href="#contact" class="btn btn-primary">Hire Me <i class="fas fa-arrow-right"></i></a>
+                    <a href="#projects" class="btn btn-secondary">My Works <i class="fas fa-briefcase"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="floating-text floating-text-1">DEV</div>
+        <div class="floating-text floating-text-2">CODE</div>
+        <div class="hero-particles" id="particles"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+                <p>Get to know me better</p>
+            </div>
+            <div class="about-content reveal">
+                <div class="about-image">
+                <img src ="pranit profile pic.jpg" alt="Pranit Gunjal">
+                  <div class="image-overlay"></div>
+                </div>
+                <div class="about-text">
+                    <p>I’m a Java Full-Stack Developer with a strong focus on backend development using Spring Boot and Hibernate, along with hands-on experience in building responsive and interactive front-end interfaces using React, HTML, CSS, and JavaScript.</p>
+                    <p>I enjoy designing scalable backend systems, building clean REST APIs, and integrating them seamlessly with modern front-end applications. While my core strength lies in backend engineering, I also value clean UI, usability, and performance, ensuring the applications I build are not only robust but also intuitive to use.</p>
+                   <p>I’m passionate about solving real-world problems through clean architecture, efficient code, and continuous learning, and I strive to deliver solutions that are reliable, maintainable, and aligned with modern development practices.</p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <div class="stat-number" data-count="5">0</div>
+                            <div class="stat-text">Projects Completed</div>
+                        </div>
+                        <!-- <div class="stat">
+                            <div class="stat-number" data-count="35">0</div>
+                            <div class="stat-text">Happy Clients</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number" data-count="5">0</div>
+                            <div class="stat-text">Years Experience</div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Resume Section -->
+
+          <!-- Resume Section -->
+<section id="resume" class="resume">
+    <div class="container">
+        <div class="section-title">
+            <h2>My Resume</h2>
+            <p>Education & Journey</p>
+        </div>
+        
+        <div class="resume-container reveal">
+            <!-- Education Timeline -->
+            <div class="resume-column">
+                <h3 class="resume-column-title">
+                    <i class="fas fa-graduation-cap"></i> Education
+                </h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">2021 - 2025</div>
+                        <div class="timeline-content">
+                            <h4>Bachelor of Technology in Computer Science</h4>
+                            <p class="timeline-place">SPPU University, Pune</p>
+                            <p>Specialized in Software Engineering and Web Technologies. Current CGPA: 6.49 / 10.0</p>
+                            <div class="timeline-progress">
+                                <div class="progress-bar" data-width="65"></div>
+                                <span>65% Completed</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2019 - 2021</div>
+                        <div class="timeline-content">
+                            <h4>Higher Secondary Education</h4>
+                            <p class="timeline-place">Ramniranjan Jhunjhunwala Junior College, Mumbai</p>
+                            <p>Science Stream with Computer Science. Scored 80% in final examinations.</p>
+                            <div class="timeline-badge">
+                                <i class="fas fa-award"></i> 80% Score
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2019</div>
+                        <div class="timeline-content">
+                            <h4>Secondary School Certificate</h4>
+                            <p class="timeline-place">Saraswati Vidya Niketan School, Mumbai</p>
+                            <p>Scored 82% in SSC Board Examinations with distinction in Mathematics and Science.</p>
+                            <div class="timeline-badge">
+                                <i class="fas fa-award"></i> 82% Score
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Experience Timeline -->
+            <!-- <div class="resume-column">
+                <h3 class="resume-column-title">
+                    <i class="fas fa-briefcase"></i> Experience
+                </h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">2023 - Present</div>
+                        <div class="timeline-content">
+                            <h4>Full Stack Developer Intern</h4>
+                            <p class="timeline-place">Tech Solutions Inc., Mumbai</p>
+                            <p>Developing responsive web applications using React.js and Node.js. Collaborating with senior developers on client projects.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2022 - 2023</div>
+                        <div class="timeline-content">
+                            <h4>Frontend Developer</h4>
+                            <p class="timeline-place">Freelance Projects</p>
+                            <p>Built 10+ responsive websites for local businesses using HTML, CSS, JavaScript and React.js.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2021 - 2022</div>
+                        <div class="timeline-content">
+                            <h4>UI/UX Design Intern</h4>
+                            <p class="timeline-place">Design Studio, Pune</p>
+                            <p>Created wireframes and prototypes for mobile applications. Conducted user research and usability testing.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        
+        <!-- Download Resume Button -->
+        <div class="resume-download">
+            <a href="Pranit Gunjal Resume.pdf" class="btn btn-primary">
+                <i class="fas fa-download"></i> Download Resume
+            </a>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Skills</h2>
+                <p>Technologies I work with</p>
+            </div>
+            <div class="skills-container reveal">
+                <div class="skill-item">
+                    <div class="skill-name">Java</div>
+                    <div class="skill-track">
+                        <div class="skill-fill" data-width="95"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">Html</div>
+                    <div class="skill-track">
+                        <div class="skill-fill" data-width="90"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">Css</div>
+                    <div class="skill-track">
+                        <div class="skill-fill" data-width="88"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">JavaScript</div>
+                    <div class="skill-track">
+                        <div class="skill-fill" data-width="85"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">Spring Boot</div>
+                    <div class="skill-track">
+                        <div class="skill-fill" data-width="80"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">React.js</div>
+                    <div class="skill-track">
+                        <div class="skill-fill" data-width="75"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Services</h2>
+                <p>What I can do for you</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Web Development</h3>
+                    <p>Building responsive, high-performance websites and web applications using the latest technologies and best practices.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>UI/UX Design</h3>
+                    <p>Creating intuitive and visually appealing user interfaces that enhance user experience and drive engagement.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Development</h3>
+                    <p>Developing cross-platform mobile applications that deliver seamless experiences on both iOS and Android.</p>
+                </div>
+               
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Projects</h2>
+                <p>Some of my recent work</p>
+            </div>
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web</button>
+                <button class="filter-btn" data-filter="mobile">Mobile</button>
+                <button class="filter-btn" data-filter="ui">UI/UX</button>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card reveal" data-category="web">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1674&q=80" alt="E-commerce Platform">
+                        <div class="project-overlay">
+                            <a href="#" class="project-view">View Details</a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag web">Web</span>
+                            <span class="project-tag ui">UI/UX</span>
+                        </div>
+                        <h3>Modern E-commerce Platform</h3>
+                        <p>A full-featured online shopping platform with advanced filtering, payment integration, and admin dashboard.</p>
+                        <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="project-card reveal" data-category="mobile">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1738&q=80" alt="Fitness App">
+                        <div class="project-overlay">
+                            <a href="#" class="project-view">View Details</a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag mobile">Mobile</span>
+                        </div>
+                        <h3>Fitness Tracking App</h3>
+                        <p>A mobile application for tracking workouts, nutrition, and progress with personalized recommendations.</p>
+                        <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="project-card reveal" data-category="web">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80" alt="Analytics Dashboard">
+                        <div class="project-overlay">
+                            <a href="#" class="project-view">View Details</a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag web">Web</span>
+                            <span class="project-tag ui">UI/UX</span>
+                        </div>
+                        <h3>Data Analytics Dashboard</h3>
+                        <p>Interactive dashboard for visualizing complex data sets with real-time updates and customizable widgets.</p>
+                        <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="project-card reveal" data-category="ui">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1664&q=80" alt="Design System">
+                        <div class="project-overlay">
+                            <a href="#" class="project-view">View Details</a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag ui">UI/UX</span>
+                        </div>
+                        <h3>Design System Library</h3>
+                        <p>A comprehensive design system with reusable components, typography scales, and color palettes.</p>
+                        <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+                <p>Let's work together</p>
+            </div>
+            <div class="contact-container reveal">
+                <div class="contact-info">
+                    <h2>Contact Info</h2>
+                    <p>Feel free to reach out to me for collaboration, project inquiries, or just to say hello!</p>
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>pranitgunjal123@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>+91 755931905</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Location</h4>
+                                <p>Moshi, Pune</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-control" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message <i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://github.com/Pranitgunjal123" class="social-link"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/pranit-gunjal-45b3b9330/" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/_pranitttt__/" class="social-link"><i class="fab fa-instagram"></i></a>
+                <!-- <a href="#" class="social-link"><i class="fab fa-dribbble"></i></a> -->
+            </div>
+            <p class="copyright">© 2023 Pranit Gunjal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
