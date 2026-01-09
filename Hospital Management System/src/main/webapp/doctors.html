@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doctors Management | CityCare Hospital</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #FF445B;
+    --primary-light: rgba(255, 68, 91, 0.1);
+    --primary-dark: #D32F42;
+    --sidebar-bg: #1E293B;
+    --card-bg: #FFFFFF;
+    --bg-color: #F8FAFC;
+    --text-dark: #1E293B;
+    --text-medium: #64748B;
+    --text-light: #94A3B8;
+    --border: #E2E8F0;
+    --success: #10B981;
+    --warning: #F59E0B;
+    --info: #3B82F6;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    --radius: 16px;
+    --curve: 20px;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg-color);
+    color: var(--text-dark);
+    display: flex;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 260px;
+    background: var(--sidebar-bg);
+    padding: 30px 20px;
+    position: fixed;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+    z-index: 100;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 40px;
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.logo i {
+    color: var(--primary);
+    background: rgba(255, 255, 255, 0.1);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    color: var(--text-light);
+    text-decoration: none;
+    border-radius: 10px;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+}
+
+.nav-item.active {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 12px rgba(255, 68, 91, 0.3);
+}
+
+.nav-item i {
+    width: 20px;
+    font-size: 18px;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary);
+}
+
+.user-info h4 {
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.user-info p {
+    color: var(--text-light);
+    font-size: 12px;
+}
+
+/* Main Content */
+.main {
+    flex: 1;
+    margin-left: 260px;
+    padding: 30px;
+    animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Action Cards */
+.action-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+@media (max-width: 768px) {
+    .action-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+.action-card {
+    background: white;
+    border-radius: var(--curve);
+    padding: 30px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.action-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary);
+}
+
+.action-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--primary);
+}
+
+.action-card:nth-child(2)::before {
+    background: var(--success);
+}
+
+.action-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--primary-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 24px;
+    color: var(--primary);
+}
+
+.action-card:nth-child(2) .action-icon {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+}
+
+.action-card h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.action-card p {
+    color: var(--text-medium);
+    font-size: 14px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--primary);
+    color: white;
+    padding: 10px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.action-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.action-card:nth-child(2) .action-btn {
+    background: var(--success);
+}
+
+.action-card:nth-child(2) .action-btn:hover {
+    background: #0D9C6E;
+}
+
+/* Quick Stats */
+.stats-overview {
+    background: white;
+    border-radius: var(--curve);
+    padding: 30px;
+    box-shadow: var(--shadow);
+    margin-bottom: 40px;
+}
+
+.stats-overview h2 {
+    font-size: 20px;
+    margin-bottom: 25px;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 20px;
+    background: var(--bg-color);
+    border-radius: 12px;
+    transition: all 0.3s;
+}
+
+.stat-item:hover {
+    background: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transform: translateY(-3px);
+}
+
+.stat-value {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--primary);
+}
+
+.stat-label {
+    font-size: 14px;
+    color: var(--text-medium);
+    font-weight: 500;
+}
+
+/* Recent Doctors */
+.recent-doctors {
+    background: white;
+    border-radius: var(--curve);
+    padding: 30px;
+    box-shadow: var(--shadow);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.section-header h2 {
+    font-size: 20px;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.view-all {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.view-all:hover {
+    text-decoration: underline;
+}
+
+.doctors-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.doctors-table th {
+    text-align: left;
+    padding: 15px;
+    background: var(--bg-color);
+    color: var(--text-medium);
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+}
+
+.doctors-table th:hover {
+    background: rgba(255, 68, 91, 0.05);
+}
+
+.doctors-table th i {
+    margin-left: 8px;
+    font-size: 12px;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+}
+
+.doctors-table th:hover i {
+    opacity: 1;
+}
+
+.doctors-table th.sort-asc i,
+.doctors-table th.sort-desc i {
+    opacity: 1;
+    color: var(--primary);
+}
+
+.doctors-table td {
+    padding: 15px;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+}
+
+.doctor-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.doctor-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary-light);
+}
+
+.doctor-name {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.doctor-department {
+    font-size: 12px;
+    color: var(--text-medium);
+}
+
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.status-active {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+}
+
+.status-on-leave {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--warning);
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+}
+
+.action-icon-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-color);
+    color: var(--text-medium);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.action-icon-btn:hover {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+.action-icon-btn.view:hover {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--info);
+}
+
+.action-icon-btn.delete:hover {
+    background: rgba(255, 68, 91, 0.1);
+    color: var(--primary);
+}
+
+/* Search and Filter */
+.search-filter {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.search-box {
+    flex: 1;
+    min-width: 300px;
+    position: relative;
+}
+
+.search-box i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light);
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    background: white;
+    transition: border-color 0.3s;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.filter-select {
+    padding: 12px 15px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    min-width: 150px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 101;
+    background: var(--primary);
+    color: white;
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(255, 68, 91, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .action-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+    
+    .main {
+        margin-left: 0;
+        padding: 20px;
+    }
+    
+    .menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .sidebar.active {
+        transform: translateX(0);
+    }
+    
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    
+    .header-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .action-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .search-filter {
+        flex-direction: column;
+    }
+    
+    .search-box {
+        min-width: 100%;
+    }
+    
+    .doctors-table {
+        display: block;
+        overflow-x: auto;
+    }
+}
+</style>
+</head>
+
+<body>
+<!-- Mobile Menu Toggle -->
+<button class="menu-toggle" id="menuToggle">
+    <i class="fas fa-bars"></i>
+</button>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+    <div class="logo">
+        <i class="fas fa-hospital-alt"></i>
+        <span>CityCare</span>
+    </div>
+    
+    <nav class="nav-links">
+        <a href="dashboard.html" class="nav-item">
+            <i class="fas fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="doctors.html" class="nav-item active">
+            <i class="fas fa-user-md"></i>
+            <span>Doctors</span>
+        </a>
+        <a href="patients.html" class="nav-item">
+            <i class="fas fa-procedures"></i>
+            <span>Patients</span>
+        </a>
+        <a href="appointments.html" class="nav-item">
+            <i class="fas fa-calendar-check"></i>
+            <span>Appointments</span>
+        </a>
+        <a href="wards.html" class="nav-item">
+            <i class="fas fa-bed"></i>
+            <span>Wards</span>
+        </a>
+         <!--     
+        <a href="#" class="nav-item">
+            <i class="fas fa-bed"></i>
+            <span>pharmacy</span>
+        </a> --> 
+        <a href="#" class="nav-item">
+            <i class="fas fa-file-invoice-dollar"></i>
+            <span>Billing</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-cog"></i>
+            <span>Settings</span>
+        </a>
+    </nav>
+    
+    <div class="user-profile">
+        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Admin" class="user-avatar">
+        <div class="user-info">
+            <h4>Dr. Arjun Mehta</h4>
+            <p>Chief Administrator</p>
+        </div>
+    </div>
+</aside>
+
+<!-- Main Content -->
+<main class="main">
+    <!-- Header -->
+    <header class="header">
+        <h1>Doctors Management</h1>
+        <div class="header-right">
+            <!-- Removed Add New Doctor button from header -->
+        </div>
+    </header>
+
+    <!-- Action Cards -->
+    <section class="action-cards">
+        <div class="action-card" onclick="window.location.href='add-doctor.html'">
+            <div class="action-icon">
+                <i class="fas fa-user-plus"></i>
+            </div>
+            <h3>Add New Doctor</h3>
+            <p>Register a new doctor with professional and hospital details</p>
+            <a href="add-doctor.html" class="action-btn">
+                <i class="fas fa-arrow-right"></i>
+                Get Started
+            </a>
+        </div>
+        
+        <div class="action-card" onclick="window.location.href='schedule.html'">
+            <div class="action-icon">
+                <i class="fas fa-calendar-check"></i>
+            </div>
+            <h3>Schedule Appointments</h3>
+            <p>Book, manage and track patient appointments with doctors</p>
+            <a href="schedule.html" class="action-btn">
+                <i class="fas fa-arrow-right"></i>
+                Schedule Now
+            </a>
+        </div>
+    </section>
+
+    <!-- Quick Stats -->
+    <section class="stats-overview">
+        <h2><i class="fas fa-chart-bar"></i> Doctors Overview</h2>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-value" id="totalDoctors">42</div>
+                <div class="stat-label">Total Doctors</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="activeDoctors">38</div>
+                <div class="stat-label">Active Doctors</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="departments">12</div>
+                <div class="stat-label">Departments</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="avgExperience">8.5</div>
+                <div class="stat-label">Avg. Experience (Years)</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search and Filter -->
+    <div class="search-filter">
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Search doctors by name, department, or specialization...">
+        </div>
+        <select class="filter-select" id="departmentFilter">
+            <option value="">All Departments</option>
+            <option value="Cardiology">Cardiology</option>
+            <option value="Neurology">Neurology</option>
+            <option value="Pediatrics">Pediatrics</option>
+            <option value="Orthopedics">Orthopedics</option>
+            <option value="General Medicine">General Medicine</option>
+            <option value="Dental">Dental</option>
+            <option value="Dermatology">Dermatology</option>
+        </select>
+        <select class="filter-select" id="statusFilter">
+            <option value="">All Status</option>
+            <option value="Active">Active</option>
+            <option value="On Leave">On Leave</option>
+        </select>
+    </div>
+
+    <!-- Recent Doctors -->
+    <section class="recent-doctors">
+        <div class="section-header">
+            <h2><i class="fas fa-user-md"></i> Recent Doctors</h2>
+            <a href="#view-all" class="view-all">
+                View All
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+        
+        <table class="doctors-table">
+            <thead>
+                <tr>
+                    <th data-sort="name">Doctor <i class="fas fa-sort"></i></th>
+                    <th data-sort="department">Department <i class="fas fa-sort"></i></th>
+                    <th data-sort="experience">Experience <i class="fas fa-sort"></i></th>
+                    <th data-sort="contact">Contact <i class="fas fa-sort"></i></th>
+                    <th data-sort="status">Status <i class="fas fa-sort"></i></th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+
+
+
+           <tbody id="doctorsTableBody"></tbody>
+
+
+
+        </table>
+    </section>
+</main>
+
+
+
+
+
+
+
+<script type="module">
+import { store, saveDoctors } from './js/dataStore.js';
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* =========================
+     ELEMENTS
+  ========================== */
+  const tableBody = document.getElementById('doctorsTableBody');
+  const searchInput = document.getElementById('searchInput');
+  const departmentFilter = document.getElementById('departmentFilter');
+  const statusFilter = document.getElementById('statusFilter');
+
+  /* Stats */
+  const totalDoctors = document.getElementById('totalDoctors');
+  const activeDoctors = document.getElementById('activeDoctors');
+  const departments = document.getElementById('departments');
+  const avgExperience = document.getElementById('avgExperience');
+
+  /* =========================
+     RENDER DOCTORS
+  ========================== */
+  function renderDoctors(list) {
+    tableBody.innerHTML = '';
+
+    if (!list.length) {
+      tableBody.innerHTML = `<tr><td colspan="6">No doctors found</td></tr>`;
+      return;
+    }
+
+    list.forEach(d => {
+      const row = document.createElement('tr');
+
+      row.innerHTML = `
+        <td><strong>${d.name}</strong></td>
+        <td>${d.department}</td>
+        <td>${d.experience} yrs</td>
+        <td>${d.mobile || '-'}</td>
+        <td>
+          <span class="status-badge ${d.status === 'Active' ? 'status-active' : 'status-on-leave'}">
+            ${d.status}
+          </span>
+        </td>
+        <td>
+          <div class="actions">
+            <button class="action-icon-btn view" data-id="${d.id}">
+              <i class="fas fa-eye"></i>
+            </button>
+            <button class="action-icon-btn edit" data-id="${d.id}">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="action-icon-btn delete" data-id="${d.id}">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        </td>
+      `;
+      tableBody.appendChild(row);
+    });
+  }
+
+  /* =========================
+     LIVE STATS
+  ========================== */
+  function updateDoctorStats() {
+    totalDoctors.innerText = store.doctors.length;
+    activeDoctors.innerText =
+      store.doctors.filter(d => d.status === 'Active').length;
+
+    const deptSet = new Set(store.doctors.map(d => d.department));
+    departments.innerText = deptSet.size;
+
+    const avg =
+      store.doctors.length === 0
+        ? 0
+        : (
+            store.doctors.reduce((sum, d) => sum + d.experience, 0) /
+            store.doctors.length
+          ).toFixed(1);
+
+    avgExperience.innerText = avg;
+  }
+
+  /* =========================
+     SEARCH & FILTER
+  ========================== */
+  function applyFilters() {
+    let data = [...store.doctors];
+
+    if (searchInput.value) {
+      const q = searchInput.value.toLowerCase();
+      data = data.filter(d =>
+        d.name.toLowerCase().includes(q) ||
+        d.department.toLowerCase().includes(q)
+      );
+    }
+
+    if (departmentFilter.value)
+      data = data.filter(d => d.department === departmentFilter.value);
+
+    if (statusFilter.value)
+      data = data.filter(d => d.status === statusFilter.value);
+
+    renderDoctors(data);
+  }
+
+  searchInput.oninput = applyFilters;
+  departmentFilter.onchange = applyFilters;
+  statusFilter.onchange = applyFilters;
+
+  /* =========================
+     ACTION BUTTONS
+  ========================== */
+  tableBody.addEventListener('click', e => {
+    const btn = e.target.closest('button');
+    if (!btn) return;
+
+    const id = btn.dataset.id;
+    const doctor = store.doctors.find(d => d.id == id);
+
+    if (btn.classList.contains('view')) {
+      alert(
+        `Doctor Details\n\n` +
+        `Name: ${doctor.name}\n` +
+        `Department: ${doctor.department}\n` +
+        `Experience: ${doctor.experience} yrs\n` +
+        `Mobile: ${doctor.mobile}\n` +
+        `Status: ${doctor.status}`
+      );
+    }
+
+    if (btn.classList.contains('edit')) {
+      sessionStorage.setItem('editDoctorId', id);
+      window.location.href = 'add-doctor.html';
+    }
+
+    if (btn.classList.contains('delete')) {
+      if (confirm('Delete this doctor?')) {
+        store.doctors = store.doctors.filter(d => d.id != id);
+        saveDoctors();
+        renderDoctors(store.doctors);
+        updateDoctorStats();
+      }
+    }
+  });
+
+  /* =========================
+     INITIAL LOAD
+  ========================== */
+  renderDoctors(store.doctors);
+  updateDoctorStats();
+});
+</script>
+
+
+
+
+</body>
+</html>
